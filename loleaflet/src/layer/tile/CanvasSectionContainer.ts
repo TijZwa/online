@@ -194,6 +194,10 @@ class CanvasSectionContainer {
 		this.canvas.ontouchcancel = this.onTouchCancel.bind(this);
 	}
 
+	getContext () {
+		return this.context;
+	}
+
 	setClearColor (color: string) {
 		this.clearColor = color;
 	}
