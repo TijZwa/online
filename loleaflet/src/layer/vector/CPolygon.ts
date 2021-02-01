@@ -67,8 +67,9 @@ class CPolygon extends CPolyline {
 
 		// remove last point in the rings if it equals first one
 		for (var i = 0, len = this.rings.length; i < len; i++) {
-			var ring = this.rings[i]
-			if (ring.length >= 2 && ring[0].equals(ring[len - 1])) {
+			var ring = this.rings[i];
+			var ringlen = ring.length;
+			if (ring.length >= 2 && ring[0].equals(ring[ringlen - 1])) {
 				ring.pop();
 			}
 		}
