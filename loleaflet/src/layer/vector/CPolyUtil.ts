@@ -44,7 +44,7 @@ namespace CPolyUtil {
 			edge = edges[k];
 			clippedPoints = [];
 
-			for (i = 0, len = points.length, j = len - 1; i < len; j = i++) {
+			for (i = 0, len = pointsWithCode.length, j = len - 1; i < len; j = i++) {
 				a = pointsWithCode[i];
 				b = pointsWithCode[j];
 
@@ -65,10 +65,10 @@ namespace CPolyUtil {
 					clippedPoints.push(p);
 				}
 			}
-			points = clippedPoints;
+			pointsWithCode = clippedPoints;
 		}
 
-		return points;
+		return pointsWithCode;
 	}
 
 	function rectanglesToPolygons(rectangles: Array<Array<CPoint>>, unitConverter: (point: CPoint) => CPoint): CPointSet {
