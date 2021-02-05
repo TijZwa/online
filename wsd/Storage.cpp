@@ -1025,6 +1025,7 @@ WopiStorage::uploadLocalFileToStorage(const Authorization& auth, const std::stri
     const std::size_t size = (fileStat.good() ? fileStat.size() : 0);
 
     Poco::URI uriObject(getUri());
+
     uriObject.setPath(isSaveAs || isRename? uriObject.getPath(): uriObject.getPath() + "/contents");
     auth.authorizeURI(uriObject);
 

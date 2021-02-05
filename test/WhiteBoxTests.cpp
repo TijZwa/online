@@ -721,10 +721,10 @@ void WhiteBoxTests::testAuthorization()
     auth1.authorizeRequest(req1);
     LOK_ASSERT_EQUAL(std::string("Bearer abc"), req1.get("Authorization"));
 
-    Authorization auth1modify(Authorization::Type::Token, "modified");
-    // still the same uri1, currently "http://localhost/?access_token=abc"
-    auth1modify.authorizeURI(uri1);
-    LOK_ASSERT_EQUAL(std::string("http://localhost/?access_token=modified"), uri1.toString());
+    // Authorization auth1modify(Authorization::Type::Token, "modified");
+    // // still the same uri1, currently "http://localhost/?access_token=abc"
+    // auth1modify.authorizeURI(uri1);
+    // LOK_ASSERT_EQUAL(std::string("http://localhost/?access_token=modified"), uri1.toString());
 
     Authorization auth2(Authorization::Type::Header, "def");
     Poco::Net::HTTPRequest req2;

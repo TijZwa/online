@@ -18,6 +18,11 @@
 
 void Authorization::authorizeURI(Poco::URI& uri) const
 {
+    if (uri.toString().find("?access_token=") != std::string::npos) 
+    {
+        LOG_DBG("URL already contains token authentication, skipping authorizeURI");
+        return;
+    }
     if (_type == Authorization::Type::Token)
     {
         static const std::string key("access_token");
@@ -40,6 +45,12 @@ void Authorization::authorizeURI(Poco::URI& uri) const
 
 void Authorization::authorizeRequest(Poco::Net::HTTPRequest& request) const
 {
+    if (request.getURI().find("?access_token=") != std::string::npos) 
+    {
+        LOG_DBG("URL already contains token authentication, skipping authorizeRequest");
+        return;
+    }
+
     switch (_type)
     {
         case Type::Token:

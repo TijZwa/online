@@ -1773,6 +1773,12 @@ void DocumentBroker::unregisterDownloadId(const std::string& downloadId)
         _registeredDownloadLinks.erase(aFound);
 }
 
+void DocumentBroker::updateAccessToken(const std::string& accessToken)
+{
+    LOG_DBG("Client requested documentBroker to update the access_token to: [" << accessToken << "].");
+    _storage->updateUserAccessToken(accessToken);
+}
+
 /// Handles input from the prisoner / child kit process
 bool DocumentBroker::handleInput(const std::vector<char>& payload)
 {

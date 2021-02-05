@@ -439,6 +439,9 @@ public:
     /// Remove download id mapping
     void unregisterDownloadId(const std::string& downloadId);
 
+    /// Update access_token
+    void updateAccessToken(const std::string& accessToken);
+
 private:
     /// get the session id of a session that can write the document for save / locking.
     std::string getWriteableSessionId() const;

@@ -412,6 +412,11 @@ bool ClientSession::_handleInput(const char *buffer, int length)
         sendTextFrameAndLogError("error: cmd=" + tokens[0] + " kind=nodocloaded");
         return false;
     }
+    else if (tokens.equals(0, "updateaccesstoken")) 
+    {
+        docBroker->updateAccessToken(tokens[1]);
+        return true;
+    }
     else if (tokens.equals(0, "canceltiles"))
     {
         docBroker->cancelTileRequests(client_from_this());

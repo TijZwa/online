@@ -174,7 +174,7 @@ public:
 
     virtual ~StorageBase() {}
 
-    const Poco::URI& getUri() const { return _uri; }
+    Poco::URI& getUri() { return _uri; }
 
     const std::string getUriString() const { return _uri.toString(); }
 
@@ -182,6 +182,24 @@ public:
 
     /// Returns the root path to the jailed file.
     const std::string& getRootFilePath() const { return _jailedFilePath; };
+
+    // Update the accesstoken
+    void updateUserAccessToken(const std::string& newAccessToken) 
+    {
+        std::string currentUri = getUri().toString();
+        std::string delimiter = "?access_token=";
+        std::string baseUri = currentUri.substr(0, currentUri.find(delimiter));
+        LOG_DBG("Changing accesstoken queryparam -> BASE: [" << baseUri << "]");
+
+        std::string newUri = baseUri + "?access_token=" + newAccessToken ;
+        LOG_DBG("Changing accesstoken queryparam -> [" << newUri << "]");
+        setUri(newUri);
+    } 
+
+    void setUri(const std::string& newUri)
+    {
+       _uri = Poco::URI(newUri);
+    }
 
     /// Set the root path of the jailed file, only for use in cases where we actually have converted
     /// it to another format, in the same directory
@@ -270,7 +288,7 @@ protected:
     const std::string& getExtendedData() const { return _extendedData; }
 
 private:
-    const Poco::URI _uri;
+    Poco::URI _uri;
     const std::string _localStorePath;
     const std::string _jailPath;
     std::string _jailedFilePath;
